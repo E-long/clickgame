@@ -14,8 +14,19 @@
             <div class="userName" v-if="gameInfo.userNameEnter">{{gameInfo.userName}}</div>
           </div>
           <div class="row">
-            <div class="col-lg-1">
-              九转轮回
+            <div class="col-md-12">
+              <h1>修为:{{gameInfo.cultivation}}</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 text-left">
+              <p>第{{gameInfo.samsara}}重天</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <button class="btn btn-lg btn-default bigBtn" v-on:click="practice">修炼</button>
+            </div>
+            <div class="col-md-4 text-right">
+              <h3>{{gameInfo.levelName}}境</h3>
             </div>
           </div>
         </div>
@@ -25,6 +36,8 @@
 </template>
 
 <script>
+import big from 'big.js'
+import level from './level.js'
 export default {
   name: 'app',
   data () {
@@ -33,14 +46,30 @@ export default {
       placeholder:"仙名",
       gameInfo:{
         userName:null,
-        userNameEnter:false
-
+        userNameEnter:false,
+        cultivation:0,
+        samsara:0,
+        level:0,
+        levelName:level._0.name,
+        nextLevel:level._0.max
       }
     }
   },
   methods: {
     enterName:function(){
+      if(!this.gameInfo.userName){
+        this.gameInfo.userName="无名氏"
+      }
       this.gameInfo.userNameEnter=true
+    },
+    practice:function(){
+      this.gameInfo.cultivation++
+
+      if(this.gameInfo.cultivation>this.gameInfo.nextLevel){
+      }
+
+
+
     }
     
   }
@@ -51,5 +80,13 @@ export default {
   body{background-color: #333;}
   .container{
     background-color: #ccc;
+  }
+  .userName{
+    font-size: 18px;
+  }
+  .bigBtn{
+    width: 60%;
+    line-height: 30px;
+    font-size: 24px;
   }
 </style>
