@@ -15,7 +15,7 @@
           </div>
           <div class="row">
             <div class="col-lg-1">
-              asdf
+              九转轮回
             </div>
           </div>
         </div>
